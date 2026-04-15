@@ -10,8 +10,15 @@ const PORT = process.env.PORT || 10000;
 app.use(cors()); // Temporary: Sabko allow karo testing ke liye
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.status(200).send("Backend is up and running! 🚀");
+// 1. Debug Route: Ye check karega ki routes register hue ya nahi
+a// Base route
+app.get('/', (req, res) => {
+  res.send("Server is LIVE and Routes are defined! 🚀");
+});
+
+// Bilkul simple bina kisi complex logic ke
+app.get('/api/test', (req, res) => {
+  res.json({ status: "success" });
 });
 
 // --- EVENT TYPES ---
