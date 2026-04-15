@@ -5,7 +5,7 @@ import axios from 'axios';
 // const API = "http://localhost:5000/api";
 
 // Naya (Render Backend URL):
-const API = "https://calendly-backend-rishita.onrender.com/api";
+const API = "https://calendly-clone-rishita.onrender.com/api";
 
 function App() {
   const [view, setView] = useState('dashboard');
