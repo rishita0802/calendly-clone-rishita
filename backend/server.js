@@ -5,9 +5,17 @@ const PORT = process.env.PORT || 5000;
 const prisma = new PrismaClient();
 const app = express();
 app.use(cors({
-  origin: "*", // Ye temporary "Sabko allow karo" settings hai, isse 100% chal jayega
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: function (origin, callback) {
+    // Ye line har tarah ke Vercel aur Localhost link ko allow karegi
+    if (!origin || origin.includes("vercel.app") || origin.includes("localhost")) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 
