@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const API = "http://localhost:3001/api";
+// Purana (Localhost):
+// const API = "http://localhost:5000/api";
+
+// Naya (Render Backend URL):
+const API = "https://calendly-backend-rishita.onrender.com/api";
 
 function App() {
   const [view, setView] = useState('dashboard');

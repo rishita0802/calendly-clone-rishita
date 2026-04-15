@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
-
+const PORT = process.env.PORT || 5000;
 const prisma = new PrismaClient();
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["https://your-vercel-link.vercel.app", "http://localhost:5173"], 
+  credentials: true
+}));
 app.use(express.json());
 
 // --- EVENT TYPES ---
@@ -144,4 +147,4 @@ app.put('/api/event-types/:id', async (req, res) => {
         res.status(400).json({ error: "Update failed." });
     }
 });
-app.listen(3001, () => console.log('Server is running on port 3001 🚀'));
+app.listen(PORT, () => console.log(`Server is running on port ${PORT} 🚀`));
