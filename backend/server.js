@@ -6,8 +6,13 @@ const prisma = new PrismaClient();
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// CORS settings
-app.use(cors()); // Temporary: Sabko allow karo testing ke liye
+
+/// server.js mein cors ko aise configure karo
+app.use(cors({
+  origin: "*", // Sabhi origins ko allow karega testing ke liye
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 // 1. Debug Route: Ye check karega ki routes register hue ya nahi
