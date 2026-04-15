@@ -1,22 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
-const PORT = process.env.PORT || 10000;
+
 const prisma = new PrismaClient();
 const app = express();
-app.use(cors({
-  origin: function (origin, callback) {
-    // Ye line har tarah ke Vercel aur Localhost link ko allow karegi
-    if (!origin || origin.includes("vercel.app") || origin.includes("localhost")) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
+const PORT = process.env.PORT || 10000;
+
+// CORS settings
+app.use(cors()); // Temporary: Sabko allow karo testing ke liye
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -25,8 +16,14 @@ app.get("/", (req, res) => {
 
 // --- EVENT TYPES ---
 app.get('/api/event-types', async (req, res) => {
-    const data = await prisma.eventType.findMany({ include: { availability: true } });
-    res.json(data);
+    try {
+        const data = await prisma.eventType.findMany({ 
+            include: { availability: true } 
+        });
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
 
 // Example Backend Code
