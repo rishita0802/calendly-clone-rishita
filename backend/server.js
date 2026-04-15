@@ -11,7 +11,7 @@ app.use(cors()); // Temporary: Sabko allow karo testing ke liye
 app.use(express.json());
 
 // 1. Debug Route: Ye check karega ki routes register hue ya nahi
-a// Base route
+// Base route
 app.get('/', (req, res) => {
   res.send("Server is LIVE and Routes are defined! 🚀");
 });
