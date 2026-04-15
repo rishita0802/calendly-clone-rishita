@@ -5,7 +5,8 @@ const PORT = process.env.PORT || 5000;
 const prisma = new PrismaClient();
 const app = express();
 app.use(cors({
-  origin: ["https://your-vercel-link.vercel.app", "http://localhost:5173"], 
+  origin: "*", // Ye temporary "Sabko allow karo" settings hai, isse 100% chal jayega
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 app.use(express.json());
