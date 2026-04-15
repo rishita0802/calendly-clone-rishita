@@ -164,4 +164,14 @@ app.put('/api/event-types/:id', async (req, res) => {
         res.status(400).json({ error: "Update failed." });
     }
 });
+
+// Sabse niche, app.listen se pehle
+app.use((req, res) => {
+  res.status(404).json({
+    message: "Route not found",
+    urlAttempted: req.url,
+    method: req.method,
+    hint: "Check if the backend folder is set correctly in Render"
+  });
+});
 app.listen(PORT, () => console.log(`Server is running on port ${PORT} 🚀`));
