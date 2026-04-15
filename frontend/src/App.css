@@ -1,0 +1,24 @@
+/* Navbar ko mobile par column mein karne ke liye */
+@media (max-width: 600px) {
+  .navbar-container {
+    flex-direction: column !important;
+    padding: 15px !important;
+    gap: 15px;
+  }
+
+  /* Grid ko single column karne ke liye */
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    padding: 10px;
+  }
+
+  /* Buttons ko full width karne ke liye mobile par */
+  .event-card-buttons {
+    flex-direction: column;
+  }
+  
+  .event-card-buttons button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
